@@ -1,0 +1,31 @@
+﻿<Window x:Class="schedule.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:schedule"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition />
+            <RowDefinition />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel x:Name="Group" Height="25" VerticalAlignment="Top" Grid.Column="0"  Grid.Row="1" Orientation="Horizontal">
+            <ComboBox x:Name="Combobox" ItemsSource="{Binding schedule}"
+                     DisplayMemberPath="Group"
+                     SelectedItem="{Binding Selectedschedule, UpdateSourceTrigger=PropertyChanged }"
+                     Width="80" HorizontalAlignment="Left"/>
+            <Button  Content="Замена" Click="replacement"  Width="100" HorizontalAlignment="Left"/>
+        </StackPanel>
+        <TextBlock Text="Группы" />
+
+    </Grid>
+</Window>

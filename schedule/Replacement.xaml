@@ -1,0 +1,94 @@
+﻿<Window x:Class="schedule.Replacement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:schedule"
+        mc:Ignorable="d"
+        Title="Replacement" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition />
+
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"  />
+            <ColumnDefinition Width="0.2*" />
+
+        </Grid.ColumnDefinitions>
+
+
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,133,0">
+            <Label Height="15" Width="100" HorizontalAlignment="Left" Content="{Binding Group}"/>
+            <Button HorizontalAlignment="Left" Content="Назад" Click="ButtonBack" Height="22" Width="68"/>
+
+        </StackPanel>
+
+        <DockPanel Grid.Row="1" Grid.Column="0">
+            <TextBlock Text="Поиск" Width="200" HorizontalAlignment="Left" DockPanel.Dock="Top"  />
+            <TextBox DockPanel.Dock="Top" Width="200" HorizontalAlignment="Left" Name="txtFilter" TextChanged="txtFilter_TextChanged" />
+            <ListView   x:Name="listschedule"  SelectedItem="{Binding Selected}" ItemsSource="{Binding tbl_replacement}" Margin="0,0,5,0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Группа" Width="150" DisplayMemberBinding="{Binding Group}"/>
+                        <GridViewColumn Header="Пара" Width="70" DisplayMemberBinding="{Binding Pair}"/>
+                        <GridViewColumn Header="Аудитория" Width="100" DisplayMemberBinding="{Binding Cabinet}" />
+                        <GridViewColumn Header="Препод" Width="170" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Предмет" Width="150" DisplayMemberBinding="{Binding Predmet}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
+
+
+        <StackPanel Grid.Column="1" Grid.Row="1">
+
+
+            <Button x:Name="Dobav"  HorizontalAlignment="Center" Content="Добавить"  Width="130" Height="20"
+                    Command="{Binding GipleCommand}" Click="Button_Click2"/>
+
+            <Button x:Name="Del" HorizontalAlignment="Center" Content="Удалить"  Width="130" Height="20"
+                     
+                     Click="Button_Click3"/>
+            <StackPanel DataContext="{Binding Selected}" Visibility="Visible">
+                <TextBlock Text="Редактирование" />
+                <TextBlock Text="Группа"/>
+                <TextBox  Text="{Binding Path=Group}"/>
+                <TextBlock Text="Пара"/>
+                <TextBox  Text="{Binding Path=Pair}"/>
+                <TextBlock Text="Предмет"/>
+                <TextBox  Text="{Binding Path=Predmet}"/>
+                <TextBlock Text="Аудитория"/>
+                <TextBox  Text="{Binding Path=Cabinet}"/>
+                <TextBlock Text="Препод"/>
+                <TextBox  Text="{Binding Path=Name}"/>
+                <Button x:Name="Repair" HorizontalAlignment="Center" Content="Сохранить"  Width="130" Height="20"
+                    Command="{Binding TipleCommand}"/>
+
+
+            </StackPanel>
+
+            <StackPanel  Visibility="{Binding kreating}">
+                <TextBlock Text="Добавление" />
+                <TextBlock Text="Группа"/>
+                <TextBox  Text="{Binding Path=Sel.Group}"/>
+                <TextBlock Text="Пара"/>
+                <TextBox  Text="{Binding Path=Sel.Pair}"/>
+                <TextBlock Text="Предмет"/>
+                <TextBox  Text="{Binding Path=Sel.Predmet}"/>
+                <TextBlock Text="Аудитория"/>
+                <TextBox  Text="{Binding Path=Sel.Cabinet}"/>
+                <TextBlock Text="Препод"/>
+                <TextBox  Text="{Binding Path=Sel.Name}"/>
+
+                <Button x:Name="Add" HorizontalAlignment="Center" Content="Добавить"  Width="130" Height="20" Click="Dobav_Click"
+                    Command="{Binding PipleCommand}"/>
+
+
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Window>
